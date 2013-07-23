@@ -1,0 +1,16 @@
+<html>
+<head>
+<title> Create a new page</title>
+</head>
+<body>
+      <h1>Create Page</h1>
+      <form method="post" action="/wiki/save/"> {% csrf_token %}
+             Title: <input type="text" name="title"></br>
+            <textarea name="content" rows="20" cols="60"> {{content}}</textarea>
+           
+            <input type="checkbox" name="check" value="True">Private page<br>
+            
+      <input type="submit" value="Save Page"/><br/>
+      <p> Click <a href="/accounts/logout/">here</a> to logout </p>
+</body>
+</html>

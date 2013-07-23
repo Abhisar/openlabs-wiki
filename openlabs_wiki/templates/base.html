@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title%}My base template{%endblock%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="/home/abhisar/workspace/new_wiki/openlabs-wiki/openlabs_wiki/templates/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+   <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+           {% block sidebar%}
+           <ul class="nav nav-list">
+              <li class="nav-header">PAGE LINKS</li>
+              <li ><a href="#">All Articles</a></li>
+              <li><a href="#">Login</a></li>
+              <li><a href="#">Logout</a></li>
+             {%endblock%}
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="hero-unit">
+            {% block content%} {%endblock%}
+          </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/home/abhisar/workspace/new_wiki/openlabs-wiki/openlabs_wiki/templates/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
