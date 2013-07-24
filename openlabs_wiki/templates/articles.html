@@ -14,11 +14,10 @@
 </tr>
 {%endfor%}
 </table>
-{%if status == True%}
+{%if status %}
    You are logged in!! 
    <p> Click <a href="/accounts/logout/">here</a> to logout!! </p>
-{%endif%}
-{%if status == False%}
+{%else%}
    <p> Click <a href="/accounts/login/">here</a> to login!! </p>
 {%endif%}
 <p> Click <a href="/accounts/register/">here</a> to register!! </p>

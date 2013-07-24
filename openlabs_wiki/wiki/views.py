@@ -88,7 +88,7 @@ def all_articles(request):
     """shows all the articles based on if user is logged in or not"""
     status=request.user.is_authenticated()
     if request.user.is_authenticated():  
-        owner=owner=request.user.username
+        owner=request.user.username
         all_pages=Article.objects.filter(Q(user=owner)|Q(flag=False))
         return render_to_response("articles.html",{'all_pages':all_pages,'status':status})
     else:
