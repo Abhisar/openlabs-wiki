@@ -1,0 +1,30 @@
+<html>
+<body>
+<h1>Articles</h1>
+
+<table  border="1">
+<tr>
+  <td>List of Articles</td>
+  <td>Created by</td>
+</tr>
+{% for article in all_pages %}
+<tr>
+  <td><a href="/wiki/{{article.id}}/">{{ article.title }}</a></td>
+  <td>{{article.user}}</td>
+</tr>
+{%endfor%}
+</table>
+{%if status == True%}
+   You are logged in!! 
+   <p> Click <a href="/accounts/logout/">here</a> to logout!! </p>
+{%endif%}
+{%if status == False%}
+   <p> Click <a href="/accounts/login/">here</a> to login!! </p>
+{%endif%}
+<p> Click <a href="/accounts/register/">here</a> to register!! </p>
+</body>
+</html>
+
+ 
+
+
