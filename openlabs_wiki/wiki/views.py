@@ -58,14 +58,22 @@ def view_page(request, page_id):
 def edit_page(request, page_id):
     """function edits the existing page"""
     if request.user.is_authenticated():
-       loggedin_user=request.user.username
-       page=Article.objects.get(id=page_id)
-       page_title=page.title
-       owner=page.user
-       page_content=history.objects.filter(page_id=page_id).latest('edited').content
-       return render_to_response("edit.html",{"page_title":page_title,"content":page_content,"page_id":page_id,'loggedin_user':loggedin_user,'owner':owner},context_instance=RequestContext(request))
+        loggedin_user = request.user.username
+        page = Article.objects.get(id=page_id)
+        page_title = page.title
+        owner = page.user
+        page_content = history.objects.filter(page_id=page_id) \
+            .latest('edited').content
+        return render_to_response(
+            "edit.html", {
+                "page_title": page_title,
+                "content": page_content, "page_id": page_id,
+                'loggedin_user': loggedin_user, 'owner': owner
+                }, context_instance=RequestContext(request)
+        )
     else:
-       return HttpResponseRedirect('/accounts/login')
+        return HttpResponseRedirect('/accounts/login')
+
 
 def save_edit(request, page_id):
     """saves the page after edit"""
@@ -84,19 +92,20 @@ def save_edit(request, page_id):
             "page_id": page_id}
     )
 
+
 def all_articles(request):
     """shows all the articles based on if user is logged in or not"""
-    status=request.user.is_authenticated()
-    if request.user.is_authenticated():  
-        owner=request.user.username
-        all_pages=Article.objects.filter(Q(user=owner)|Q(flag=False))
-        return render_to_response("articles.html",{'all_pages':all_pages,'status':status})
+    status = request.user.is_authenticated()
+    if request.user.is_authenticated():
+        owner = request.user.username
+        all_pages = Article.objects.filter(Q(user=owner) | Q(flag=False))
+        return render_to_response(
+            "articles.html", {
+                'all_pages': all_pages, 'status': status}
+        )
     else:
-        all_pages=Article.objects.all().filter(flag=False)
-        return render_to_response("articles.html",{'all_pages':all_pages,'status':status})
-    
-    
-
-
-    
-
+        all_pages = Article.objects.all().filter(flag=False)
+        return render_to_response(
+            "articles.html", {
+                'all_pages': all_pages, 'status': status}
+        )
