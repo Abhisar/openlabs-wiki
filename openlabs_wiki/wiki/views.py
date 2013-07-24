@@ -109,3 +109,36 @@ def all_articles(request):
             "articles.html", {
                 'all_pages': all_pages, 'status': status}
         )
+
+
+def view_history(request,page_id):
+    """
+    shows the history of changes of made to a page
+    """
+    page = Article.objects.get(id=page_id)
+    page_title = page.title
+    page_history=history.objects.filter(page_id=page_id).order_by('-edited')
+    return render_to_response("history.html",{'page_history':page_history,'page_title':page_title})
+
+
+def view_change(request,page_id):
+    """
+    Shows the change made by a user
+    """
+    page_history=history.objects.get(id=page_id)
+    return render_to_response("view_change.html",{'page_history':page_history})
+
+
+def revert(request,page_id):
+    """
+    reverts back to the previous content of page
+    """
+    loggedin_user=request.user.username
+    page_history=history.objects.get(id=page_id)
+    page_num=page_history.page_id
+    page=Article.objects.get(id=page_num.id)
+    new_entry= history(page_id=page,content=page_history.content,edited_by=loggedin_user)
+    new_entry.save()
+    return HttpResponseRedirect('/wiki/'+str(page.id))
+    
+    
