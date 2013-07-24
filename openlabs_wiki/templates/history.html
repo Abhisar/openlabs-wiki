@@ -20,6 +20,12 @@
        </tr>
        {%endfor%}
     </table>
+   <h2>Enter edit id to compare two versions:</h2>
+      <form method="post" action="/wiki/diff/"> {% csrf_token %}
+          First id :<input type="text" name="id1"></br>
+          Second id:<input type="text" name="id2"></br>
+          <input type="submit" value="Compare"/><br/>
+      </form>
   </body>
 </html>
    
