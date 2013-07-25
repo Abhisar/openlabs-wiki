@@ -5,6 +5,7 @@ from django.conf.urls import patterns, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^wiki/$','wiki.views.all_articles'),
     url('wiki/create/$', 'wiki.views.create_page'),
     url('wiki/save/$', 'wiki.views.save'),
     url(r'^wiki/(?P<page_id>[^/]+)/$', 'wiki.views.view_page'),

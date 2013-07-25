@@ -2,7 +2,7 @@
 <head>
 <title> {{page_title}}-Editing</title>
 </head>
-<body>
+<body> <p> <a href="/wiki/">Home</a> </p>
       <h1>Editing {{page_title}}</h1>
       <form method="post" action="/wiki/{{page_id}}/save_edit/"> {% csrf_token %}
             <textarea name="content" rows="20" cols="60"> {{content}}</textarea>
@@ -10,6 +10,6 @@
             <input type="checkbox" name="check" value="True">Private page<br>
            <!-- {%endif%}-->
       <input type="submit" value="Save Page"/><br/>
-      <p> Click <a href="/accounts/logout/">here</a> to logout </p>
+      <p><a href="/accounts/logout/">Logout</a></p>
 </body>
 </html>

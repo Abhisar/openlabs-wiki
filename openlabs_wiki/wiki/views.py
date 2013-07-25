@@ -85,3 +85,20 @@ def save_edit(request, page_id):
             "page_title": page_title, "content": content,
             "page_id": page_id}
     )
+
+def all_articles(request):
+    """shows all the articles based on if user is logged in or not"""
+    status = request.user.is_authenticated()
+    if request.user.is_authenticated():
+        owner = request.user.username
+        all_pages = Article.objects.filter(Q(user=owner) | Q(flag=False))
+        return render_to_response(
+            "articles.html", {
+                'all_pages': all_pages, 'status': status}
+        )
+    else:
+        all_pages = Article.objects.all().filter(flag=False)
+        return render_to_response(
+            "articles.html", {
+                'all_pages': all_pages, 'status': status}
+        )
