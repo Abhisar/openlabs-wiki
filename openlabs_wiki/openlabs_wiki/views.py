@@ -60,7 +60,7 @@ def register_user(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-        return HttpResponseRedirect('/accounts/register_success')
+            return HttpResponseRedirect('/accounts/register_success')
     args = {}
     args.update(csrf(request))
     args['form'] = UserCreationForm()
