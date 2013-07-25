@@ -12,19 +12,14 @@
   <td><a href="/wiki/{{article.id}}/">{{ article.title }}</a></td>
   <td>{{article.user}}</td>
 </tr>
-{%endfor%}
+{% endfor %}
 </table>
-{%if status == True%}
+{% if status %}
    You are logged in!! 
    <p> Click <a href="/accounts/logout/">here</a> to logout!! </p>
-{%endif%}
-{%if status == False%}
+{% else %}
    <p> Click <a href="/accounts/login/">here</a> to login!! </p>
-{%endif%}
+{% endif %}
 <p> Click <a href="/accounts/register/">here</a> to register!! </p>
 </body>
 </html>
-
- 
-
-

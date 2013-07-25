@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect
 
 
 def create_page(request):
-    """creates a new page if user is logged  """
+    """creates a new page if user is logged in """
     if request.user.is_authenticated():
         content = ""
         return render_to_response(
