@@ -10,6 +10,7 @@ from django.template.loader import get_template
 from django.http import HttpResponseRedirect
 import difflib
 
+
 def create_page(request):
     """creates a new page if user is logged  """
     if request.user.is_authenticated():
@@ -120,7 +121,9 @@ def view_history(request, page_id):
     page_history = history.objects.filter(page_id=page_id).order_by('-edited')
     return render_to_response(
         "history.html", {
-            'page_history': page_history, 'page_title': page_title},context_instance=RequestContext(request)
+            'page_history': page_history,
+            'page_title': page_title},
+        context_instance=RequestContext(request)
     )
 
 
@@ -158,37 +161,16 @@ def view_diff(request):
         diff = difflib.Differ()
         article1 = history.objects.get(id=request.POST['id1'])
         article2 = history.objects.get(id=request.POST['id2'])
-        values = {'content': list(diff.compare(article2.content.split('\n'),article1.content.split('\n')))}
-        return render_to_response('compare-wiki.html', values, context_instance=RequestContext(request))
+        values = {
+            'content': list(diff.compare(
+                article2.content.split('\n'),
+                article1.content.split('\n')
+                )
+            )
+        }
+        return render_to_response(
+            'compare-wiki.html', values,
+            context_instance=RequestContext(request)
+        )
     else:
         return HttpResponse('error')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
