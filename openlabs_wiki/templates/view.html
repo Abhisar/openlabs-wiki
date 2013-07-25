@@ -5,7 +5,10 @@
 
 <body>
   <h1>{{page_title}}</h1><br/>
-  <p>{{content}}</p><br/>
+  {% load markup_tags %}
+       {% filter apply_markup:"creole" %}
+           {{content}}
+       {% endfilter %}
   <a href="/wiki/{{page_id}}/edit/"> Edit</a><br/>
   <a href="/wiki/{{page_id}}/history/"> Revision history </a>
 </body>

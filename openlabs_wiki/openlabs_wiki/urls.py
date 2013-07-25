@@ -13,6 +13,14 @@ urlpatterns = patterns('',
     url(r'^wiki/(?P<page_id>[^/]+)/edit/$', 'wiki.views.edit_page'),
     url(r'^wiki/(?P<page_id>[^/]+)/save_edit/$', 'wiki.views.save_edit'),
     url(r'^wiki/(?P<page_id>[^/]+)/history/$', 'wiki.views.view_history'),
+    url(
+        r'^wiki/(?P<page_id>[^/]+)/save_edit/(?P<page_name>[^/]+)/$',
+        'wiki.views.interlinks'
+    ),
+    url(
+        r'^wiki/(?P<page_id>[^/]+)/(?P<page_name>[^/]+)/$',
+        'wiki.views.interlinks'
+    ),
     url(r'revert/(?P<page_id>[^/]+)/$', 'wiki.views.revert'),
     url('change/(?P<page_id>[^/]+)/$', 'wiki.views.view_change'),
     url('accounts/login/$', 'openlabs_wiki.views.login'),

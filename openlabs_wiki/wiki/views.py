@@ -174,3 +174,15 @@ def view_diff(request):
         )
     else:
         return HttpResponse('error')
+
+
+def interlinks(request, page_id, page_name):
+    """
+    redirects to interlinks within wiki
+    """
+    try:
+        page = Article.objects.get(title=page_name)
+        page_id = page.id
+        return HttpResponseRedirect('/wiki/'+str(page.id))
+    except:
+        return HttpResponse('error: Page not available')
