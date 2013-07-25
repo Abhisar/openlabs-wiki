@@ -113,7 +113,7 @@ def all_articles(request):
 
 def view_history(request, page_id):
     """
-    shows the history of changes of made to a page
+    shows the history of changes applied to a page
     """
     page = Article.objects.get(id=page_id)
     page_title = page.title
