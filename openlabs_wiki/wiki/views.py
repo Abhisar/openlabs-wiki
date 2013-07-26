@@ -147,4 +147,4 @@ def revert(request, page_id):
         page_id=page, content=page_history.content, edited_by=loggedin_user
     )
     new_entry.save()
-    return HttpResponseRedirect('/wiki/'+str(page.id))
+    return HttpResponseRedirect('/wiki/' + str(page.id))
