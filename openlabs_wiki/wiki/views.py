@@ -122,7 +122,8 @@ def view_history(request, page_id):
     return render_to_response(
         "history.html", {
             'page_history': page_history,
-            'page_title': page_title},
+            'page_title': page_title
+            },
         context_instance=RequestContext(request)
     )
 
