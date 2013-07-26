@@ -14,5 +14,8 @@ class history(models.Model):
     edited_by = models.CharField(max_length=25)
     
     def __unicode__(self):
-        """will call the __unicode__ method of the User class and  to give an object a readable name"""   
+        """
+        will call the __unicode__ method of the User class and  
+        to give an object a readable name
+        """   
         return self.title

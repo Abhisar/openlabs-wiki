@@ -83,7 +83,8 @@ def save_edit(request, page_id):
     return render_to_response(
         "view.html", {
             "page_title": page_title, "content": content,
-            "page_id": page_id}
+            "page_id": page_id
+        }
     )
 
 def all_articles(request):
@@ -94,11 +95,13 @@ def all_articles(request):
         all_pages = Article.objects.filter(Q(user=owner) | Q(flag=False))
         return render_to_response(
             "articles.html", {
-                'all_pages': all_pages, 'status': status}
+                'all_pages': all_pages, 'status': status
+            }
         )
     else:
         all_pages = Article.objects.all().filter(flag=False)
         return render_to_response(
             "articles.html", {
-                'all_pages': all_pages, 'status': status}
+                'all_pages': all_pages, 'status': status
+             }
         )
