@@ -19,6 +19,11 @@ class history(models.Model):
     edited = models.DateTimeField(auto_now_add=True)
     edited_by = models.CharField(max_length=25)
 
+
+class Document(models.Model):
+    imagefile = models.ImageField(upload_to='documents/%Y/%m/%d')
+
+    
     def __unicode__(self):
         """
         Will call the __unicode__ method of the User class and  to give

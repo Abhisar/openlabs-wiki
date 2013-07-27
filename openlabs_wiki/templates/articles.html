@@ -1,5 +1,13 @@
 <html>
 <body>
+{%if status %}
+   You are logged in!! 
+   <a href="/accounts/logout/">Logout</a>&nbsp&nbsp&nbsp 
+   <a href="/wiki/create/">Create page</a>&nbsp&nbsp&nbsp 
+{%else%}
+   <a href="/accounts/login/">Login</a>&nbsp&nbsp&nbsp 
+{%endif%}
+<a href="/accounts/register/">Register</a>
 <h1>Articles</h1>
 
 <table  border="1">
@@ -14,14 +22,8 @@
 </tr>
 {%endfor%}
 </table>
-{%if status %}
-   You are logged in!! 
-   <p><a href="/accounts/logout/">Logout</a> </p>
-   <p><a href="/wiki/create/">Create page</a></p>
-{%else%}
-   <p><a href="/accounts/login/">Login</a></p>
-{%endif%}
-<p><a href="/accounts/register/">Register</a></p>
+
+
 </body>
 </html>
 

@@ -2,7 +2,9 @@ from django.db.models import Q
 from django.views.decorators.csrf import csrf_protect
 from django.template import RequestContext
 from django.core.context_processors import csrf
-from wiki.models import Article, history
+from wiki.models import Article, history,Document
+from wiki.forms import ImageForm
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.template import Context
 from django.shortcuts import render_to_response
@@ -186,3 +188,26 @@ def interlinks(request, page_id, page_name):
         return HttpResponseRedirect('/wiki/'+str(page.id))
     except:
         return HttpResponse('error: Page not available')
+def list(request):
+    # Handle file upload
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            newimage = Document(imagefile = request.FILES['imagefile'])
+            newimage.save()
+
+            # Redirect to the document list after POST
+            return HttpResponseRedirect(reverse('wiki.views.list'))
+    else:
+        form = ImageForm() # A empty, unbound form
+
+    # Load documents for the list page
+    images = Document.objects.all()
+
+    # Render list page with the documents and the form
+    return render_to_response(
+        'list.html',
+        {'documents': images, 'form': form},
+        context_instance=RequestContext(request)
+    )
+

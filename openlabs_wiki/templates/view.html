@@ -4,13 +4,16 @@
 </head>
 
 <body>
+  <a href="/wiki/"> Home</a>&nbsp&nbsp&nbsp
+  <a href="/wiki/{{page_id}}/edit/"> Edit</a>&nbsp&nbsp&nbsp
+  <a href="/wiki/{{page_id}}/history/"> Revision history </a><br/>
+  
   <h1>{{page_title}}</h1><br/>
   {% load markup_tags %}
        {% filter apply_markup:"creole" %}
            {{content}}
        {% endfilter %}
-  <a href="/wiki/{{page_id}}/edit/"> Edit</a><br/>
-  <a href="/wiki/{{page_id}}/history/"> Revision history </a>
+  
 </body>
 </html>
 

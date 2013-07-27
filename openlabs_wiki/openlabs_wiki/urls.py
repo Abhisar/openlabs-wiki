@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
-
+from django.conf.urls.static import static
+from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -30,6 +31,7 @@ urlpatterns = patterns('',
     url('accounts/invalid/$', 'openlabs_wiki.views.invalid_login'),
     url('accounts/register/$', 'openlabs_wiki.views.register_user'),
     url('accounts/register_success/$', 'openlabs_wiki.views.register_success'),
+    url(r'^list/$', 'wiki.views.list', name='list'),
     # Examples:
     # url(r'^$', 'openlabs_wiki.views.home', name='home'),
     # url(r'^openlabs_wiki/', include('openlabs_wiki.foo.urls')),
@@ -39,4 +41,4 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-)
+) +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
