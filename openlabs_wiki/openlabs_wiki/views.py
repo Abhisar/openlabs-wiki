@@ -32,7 +32,7 @@ def auth_view(request):
 def loggedin(request):
     """
     This view lands the user to page that is private to the user after he
-    logs in
+    login
     """
     return render_to_response(
         'loggedin.html', {
