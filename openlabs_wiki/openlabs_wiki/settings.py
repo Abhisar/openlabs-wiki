@@ -1,5 +1,4 @@
 # Django settings for openlabs_wiki project.
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -128,8 +127,20 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'wiki',
     'django_markup',
+    'social_auth'
 )
-
+AUTHENTICATION_BACKENDS = ( 
+    'social_auth.backends.contrib.github.GithubBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'social_auth.context_processors.social_auth_by_type_backends',
+)
+SOCIAL_AUTH_DEFAULT_BACKENDS = ('github',)
+SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
+GITHUB_APP_ID = 'c63f3e25072fce415f12'
+GITHUB_API_SECRET = '487f5277e4f46859721e0c88cf2c22a5f1591f96'
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

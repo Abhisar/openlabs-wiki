@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url,include
 from django.conf.urls.static import static
 from django.conf import settings
 # Uncomment the next two lines to enable the admin:
@@ -6,6 +6,7 @@ from django.conf import settings
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'',include('social_auth.urls')),
     url(r'^wiki/$', 'wiki.views.all_articles'),
     url('wiki/create/$', 'wiki.views.create_page'),
     url('wiki/save/$', 'wiki.views.save'),
