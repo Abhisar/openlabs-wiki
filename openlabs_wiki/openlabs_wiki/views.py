@@ -16,7 +16,7 @@ def login(request):
 
 def auth_view(request):
     """
-    It checks for authentication of username and password and logsin the user
+    It checks for authentication of username and password and login the user
     """
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
@@ -32,7 +32,7 @@ def auth_view(request):
 def loggedin(request):
     """
     This view lands the user to page that is private to the user after he
-    logsin
+    login
     """
     return render_to_response(
         'loggedin.html', {
