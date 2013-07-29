@@ -32,7 +32,7 @@ urlpatterns = patterns('',
     url('accounts/invalid/$', 'openlabs_wiki.views.invalid_login'),
     url('accounts/register/$', 'openlabs_wiki.views.register_user'),
     url('accounts/register_success/$', 'openlabs_wiki.views.register_success'),
-    url(r'^list/$', 'wiki.views.list', name='list'),
+    url(r'^list/$', 'wiki.views.upload_pic', name='list'),
     # Examples:
     # url(r'^$', 'openlabs_wiki.views.home', name='home'),
     # url(r'^openlabs_wiki/', include('openlabs_wiki.foo.urls')),

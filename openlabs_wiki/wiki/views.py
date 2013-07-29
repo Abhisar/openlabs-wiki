@@ -163,17 +163,8 @@ def view_diff(request):
         diff = difflib.Differ()
         article1 = history.objects.get(id=request.POST['id1'])
         article2 = history.objects.get(id=request.POST['id2'])
-        values = {
-            'content': list(diff.compare(
-                article2.content.split('\n'),
-                article1.content.split('\n')
-                )
-            )
-        }
-        return render_to_response(
-            'compare-wiki.html', values,
-            context_instance=RequestContext(request)
-        )
+        values = {'content': list(diff.compare(article2.content.split('\n'),article1.content.split('\n')))}
+        return render_to_response('compare-wiki.html', values,context_instance=RequestContext(request))
     else:
         return HttpResponse('error')
 
@@ -188,23 +179,27 @@ def interlinks(request, page_id, page_name):
         return HttpResponseRedirect('/wiki/'+str(page.id))
     except:
         return HttpResponse('error: Page not available')
-def list(request):
-    # Handle file upload
+
+
+def upload_pic(request):
+    '''
+    Handles image uploads and displays list of images if any 
+    '''
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             newimage = Document(imagefile = request.FILES['imagefile'])
             newimage.save()
 
-            # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('wiki.views.list'))
+            
+            return HttpResponseRedirect(reverse('wiki.views.upload_pic'))
     else:
-        form = ImageForm() # A empty, unbound form
+        form = ImageForm()
 
-    # Load documents for the list page
+    
     images = Document.objects.all()
 
-    # Render list page with the documents and the form
+    
     return render_to_response(
         'list.html',
         {'documents': images, 'form': form},
